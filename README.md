@@ -77,18 +77,10 @@ A RESTful API built with Laravel to manage appointments, schedules, user authent
 
 ## Setup Instructions
 1. Clone the repository
-   git clone https://github.com/pandudewa/appointment-api.git
-   cd appointment-api
 2. Install Dependencies
-   composer install
 3. Configure your database credentials
-   DB_DATABASE=your_database
-   DB_USERNAME=your_username
-   DB_PASSWORD=your_password
 4. Run Migration
-   php artisan migrate
 5. Run the server
-   php artisan serve
 
 ## Authentication
 
