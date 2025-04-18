@@ -59,3 +59,54 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Appointment API
+
+A RESTful API built with Laravel to manage appointments, schedules, user authentication, and review functionalities.
+
+## Features
+
+- User registration and login with Laravel Sanctum
+- Role-based authorization (admin, user)
+- Schedule management (CRUD)
+- Appointment booking
+- Review system (one review per appointment)
+- API token-based authentication
+
+---
+
+## Setup Instructions
+1. Clone the repository
+   git clone https://github.com/pandudewa/appointment-api.git
+   cd appointment-api
+2. Install Dependencies
+   composer install
+3. Configure your database credentials
+   DB_DATABASE=your_database
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+4. Run Migration
+   php artisan migrate
+5. Run the server
+   php artisan serve
+
+## Authentication
+
+- This project uses Laravel Sanctum for API authentication.
+- After login, a token is returned and must be passed in authorization tab
+
+## Assumptions Made
+
+- Roles are predefined as either admin or user
+- Users can only review schedules they have appointments for.
+- One review is allowed per appointment.
+- Middleware CheckRole restricts access to routes based on role.
+
+  Method | Endpoint | Description | Middleware
+POST | /login | Login and get token | -
+GET | /schedules | List schedules | auth:sanctum
+POST | /schedules | Create schedule (admin only) | auth:sanctum, role:admin
+POST | /appointments | Book an appointment | auth:sanctum, role:user
+POST | /reviews/{scheduleId} | Submit review | auth:sanctum, role:user
+PUT | /reviews/{id} | Update review | auth:sanctum, role:user
+DELETE | /reviews/{id} | Delete review | auth:sanctum, role:user
